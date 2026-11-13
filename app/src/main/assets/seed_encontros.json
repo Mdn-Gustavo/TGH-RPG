@@ -1,0 +1,262 @@
+[
+  {
+    "id": "ponte-mendigo",
+    "titulo": "O Mendigo da Ponte",
+    "texto": "Você atravessa uma velha ponte de pedra quando um mendigo estende a mão e pede uma esmola.",
+    "opcaoA": {
+      "rotulo": "Chutar o mendigo",
+      "atributo": "FORCA",
+      "dificuldade": 11,
+      "textoSucesso": "Ele cai de costas e solta um grito. Você passa sem que ele consiga se levantar.",
+      "textoFalha": "O mendigo era um velho soldado. Ele te derruba e você sai de lá machucado."
+    },
+    "opcaoB": {
+      "rotulo": "Passar rápido, fingindo que não viu",
+      "atributo": "AGILIDADE",
+      "dificuldade": 10,
+      "textoSucesso": "Você desliza pela beirada da ponte e o deixa falando sozinho.",
+      "textoFalha": "Ele agarra sua capa e você só se solta depois de um tombo feio."
+    },
+    "opcaoC": {
+      "rotulo": "Dar uma esmola e puxar conversa",
+      "atributo": "MENTE",
+      "dificuldade": 13,
+      "textoSucesso": "Ele agradece e te conta qual lado da estrada está livre de bandidos.",
+      "textoFalha": "Ele te enrola com uma história falsa e você acaba perdendo a bolsa e a paciência."
+    }
+  },
+  {
+    "id": "lobo-estrada",
+    "titulo": "O Lobo na Estrada",
+    "texto": "Um lobo magro bloqueia a estrada, rosnando baixo. Ele parece faminto.",
+    "opcaoA": {
+      "rotulo": "Enfrentar o lobo",
+      "atributo": "FORCA",
+      "dificuldade": 13,
+      "textoSucesso": "Um golpe certeiro e o lobo foge com o rabo entre as pernas.",
+      "textoFalha": "O lobo salta e morde seu braço antes de fugir."
+    },
+    "opcaoB": {
+      "rotulo": "Fugir por entre as árvores",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Você corre em zigue-zague e o lobo desiste da perseguição.",
+      "textoFalha": "Você tropeça numa raiz e o lobo arranha suas costas."
+    },
+    "opcaoC": {
+      "rotulo": "Acalmar o animal com a voz",
+      "atributo": "MENTE",
+      "dificuldade": 10,
+      "textoSucesso": "Você fala baixo e devagar, e o lobo se deita no chão.",
+      "textoFalha": "O lobo não se convence e te acerta uma mordida na perna."
+    }
+  },
+  {
+    "id": "bau-misterioso",
+    "titulo": "O Baú Abandonado",
+    "texto": "No meio da trilha há um baú coberto de musgo, sem dono à vista.",
+    "opcaoA": {
+      "rotulo": "Arrombar a tampa a pancadas",
+      "atributo": "FORCA",
+      "dificuldade": 10,
+      "textoSucesso": "A madeira racha e o baú se abre sem acionar nada.",
+      "textoFalha": "Uma armadilha dispara e te joga para trás."
+    },
+    "opcaoB": {
+      "rotulo": "Desarmar a trava com cuidado",
+      "atributo": "AGILIDADE",
+      "dificuldade": 14,
+      "textoSucesso": "Seus dedos acham o fio escondido e você o corta a tempo.",
+      "textoFalha": "Uma agulha envenenada espeta seu dedo."
+    },
+    "opcaoC": {
+      "rotulo": "Ler as runas gravadas na tampa",
+      "atributo": "MENTE",
+      "dificuldade": 12,
+      "textoSucesso": "As runas avisam do truque. Você abre do jeito certo.",
+      "textoFalha": "Você lê errado e a tampa solta uma nuvem de pó que te queima os olhos."
+    }
+  },
+  {
+    "id": "ponte-quebrada",
+    "titulo": "A Ponte Quebrada",
+    "texto": "Metade das tábuas da ponte à sua frente está podre. Do outro lado, o caminho continua.",
+    "opcaoA": {
+      "rotulo": "Atravessar pendurado nas cordas",
+      "atributo": "FORCA",
+      "dificuldade": 12,
+      "textoSucesso": "Com os braços firmes, você chega do outro lado.",
+      "textoFalha": "Os braços cedem e você cai no rio, voltando molhado e dolorido."
+    },
+    "opcaoB": {
+      "rotulo": "Correr pelas tábuas inteiras",
+      "atributo": "AGILIDADE",
+      "dificuldade": 10,
+      "textoSucesso": "Você salta de tábua em tábua e chega rindo.",
+      "textoFalha": "Uma tábua cede e você bate a canela ao cair."
+    },
+    "opcaoC": {
+      "rotulo": "Estudar onde pisar",
+      "atributo": "MENTE",
+      "dificuldade": 14,
+      "textoSucesso": "Você nota quais tábuas aguentam e atravessa com calma.",
+      "textoFalha": "Você erra a conta e despenca numa tábua podre."
+    }
+  },
+  {
+    "id": "ladrao-viela",
+    "titulo": "O Ladrão da Viela",
+    "texto": "Numa viela estreita, um ladrão sai das sombras com uma faca na mão e pede sua bolsa.",
+    "opcaoA": {
+      "rotulo": "Lutar com o ladrão",
+      "atributo": "FORCA",
+      "dificuldade": 14,
+      "textoSucesso": "Você o desarma e ele foge sem olhar para trás.",
+      "textoFalha": "Ele te corta o braço e foge com parte do seu ouro."
+    },
+    "opcaoB": {
+      "rotulo": "Escapar pelos telhados",
+      "atributo": "AGILIDADE",
+      "dificuldade": 11,
+      "textoSucesso": "Você sobe numa caixa, alcança o telhado e some.",
+      "textoFalha": "Você escorrega no telhado e se machuca na queda."
+    },
+    "opcaoC": {
+      "rotulo": "Convencer o ladrão a desistir",
+      "atributo": "MENTE",
+      "dificuldade": 12,
+      "textoSucesso": "Você fala sobre a guarda da cidade e ele recua assustado.",
+      "textoFalha": "Ele não cai na conversa e te empurra contra a parede."
+    }
+  },
+  {
+    "id": "taverna-brigao",
+    "titulo": "O Brigão da Taverna",
+    "texto": "Um homem enorme esbarra em você de propósito e começa a gritar que você derrubou a bebida dele.",
+    "opcaoA": {
+      "rotulo": "Aceitar a briga",
+      "atributo": "FORCA",
+      "dificuldade": 12,
+      "textoSucesso": "Um soco bem dado e o brigão cai sentado, rindo de si mesmo.",
+      "textoFalha": "O brigão acerta seu rosto e você vê estrelas."
+    },
+    "opcaoB": {
+      "rotulo": "Esquivar e sair pela porta",
+      "atributo": "AGILIDADE",
+      "dificuldade": 13,
+      "textoSucesso": "Você se esquiva dos socos e sai antes que ele entenda.",
+      "textoFalha": "Você tropeça numa cadeira e leva um soco de raspão."
+    },
+    "opcaoC": {
+      "rotulo": "Pagar outra bebida a ele",
+      "atributo": "MENTE",
+      "dificuldade": 10,
+      "textoSucesso": "Ele ri, bate no seu ombro e te deixa em paz.",
+      "textoFalha": "Ele acha que você está zombando dele e te empurra para fora."
+    }
+  },
+  {
+    "id": "porta-trancada",
+    "titulo": "A Porta Trancada",
+    "texto": "Uma porta de ferro fecha a passagem. Há um buraco de fechadura e uma frase gravada ao lado.",
+    "opcaoA": {
+      "rotulo": "Arrombar a porta no ombro",
+      "atributo": "FORCA",
+      "dificuldade": 10,
+      "textoSucesso": "A porta cede com um estrondo e se abre.",
+      "textoFalha": "A porta não cede e seu ombro paga o preço."
+    },
+    "opcaoB": {
+      "rotulo": "Abrir a fechadura com um grampo",
+      "atributo": "AGILIDADE",
+      "dificuldade": 13,
+      "textoSucesso": "O grampo gira e a porta destrava com um clique.",
+      "textoFalha": "O grampo quebra e a lâmina de uma armadilha raspa na sua mão."
+    },
+    "opcaoC": {
+      "rotulo": "Decifrar a frase gravada",
+      "atributo": "MENTE",
+      "dificuldade": 14,
+      "textoSucesso": "A frase era uma senha. Você a diz e a porta se abre.",
+      "textoFalha": "Você diz a palavra errada e leva um choque da porta."
+    }
+  },
+  {
+    "id": "ovo-de-dragao",
+    "titulo": "O Ninho Abandonado",
+    "texto": "Numa caverna rasa, há um ninho com um ovo do tamanho de uma melancia. A mãe parece estar por perto.",
+    "opcaoA": {
+      "rotulo": "Pegar o ovo à força",
+      "atributo": "FORCA",
+      "dificuldade": 15,
+      "textoSucesso": "Você levanta o ovo pesado e sai da caverna antes de ela voltar.",
+      "textoFalha": "O ovo escorrega e a mãe aparece soltando fogo no seu caminho."
+    },
+    "opcaoB": {
+      "rotulo": "Pegar sem fazer barulho",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Você anda na ponta dos pés e sai sem acordar ninguém.",
+      "textoFalha": "Uma pedra rola e a mãe te chamusca na saída."
+    },
+    "opcaoC": {
+      "rotulo": "Cantar baixinho para acalmar a mãe",
+      "atributo": "MENTE",
+      "dificuldade": 11,
+      "textoSucesso": "A mãe fecha os olhos e você sai da caverna em paz.",
+      "textoFalha": "A mãe não gosta da canção e te acerta com a cauda."
+    }
+  },
+  {
+    "id": "ruinas-sombras",
+    "titulo": "As Ruínas das Sombras",
+    "texto": "Em ruínas antigas, uma sombra sem dono se levanta do chão e sussurra o seu nome.",
+    "opcaoA": {
+      "rotulo": "Atacar a sombra",
+      "atributo": "FORCA",
+      "dificuldade": 11,
+      "textoSucesso": "Seu golpe a atravessa, mas ela se desfaz com um grito.",
+      "textoFalha": "Seu golpe passa direto e a sombra gela seu peito."
+    },
+    "opcaoB": {
+      "rotulo": "Desviar e passar correndo",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Você passa por baixo dos braços da sombra e foge.",
+      "textoFalha": "A sombra te alcança e arranha suas costas."
+    },
+    "opcaoC": {
+      "rotulo": "Ignorar o sussurro e manter a calma",
+      "atributo": "MENTE",
+      "dificuldade": 13,
+      "textoSucesso": "Você ignora a voz e a sombra perde a força.",
+      "textoFalha": "O sussurro te domina por um instante e você cambaleia."
+    }
+  },
+  {
+    "id": "guardiao-porta",
+    "titulo": "O Guardião da Porta",
+    "texto": "Uma estátua viva bloqueia a saída. Ela pergunta: \"Quem és tu e o que queres?\"",
+    "opcaoA": {
+      "rotulo": "Empurrar a estátua para o lado",
+      "atributo": "FORCA",
+      "dificuldade": 13,
+      "textoSucesso": "Você a empurra, e ela cai como uma pilha de pedras.",
+      "textoFalha": "A estátua te acerta com o punho de pedra."
+    },
+    "opcaoB": {
+      "rotulo": "Driblar a estátua e passar",
+      "atributo": "AGILIDADE",
+      "dificuldade": 13,
+      "textoSucesso": "Você passa entre as pernas dela antes que ela vire.",
+      "textoFalha": "A estátua pisa na sua perna ao se virar."
+    },
+    "opcaoC": {
+      "rotulo": "Responder com a verdade",
+      "atributo": "MENTE",
+      "dificuldade": 13,
+      "textoSucesso": "A estátua aceita sua resposta e se abre para você passar.",
+      "textoFalha": "A resposta não a convence e ela te empurra para trás."
+    }
+  }
+]
