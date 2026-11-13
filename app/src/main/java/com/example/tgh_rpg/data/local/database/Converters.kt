@@ -1,4 +1,4 @@
-package com.example.tgh_rpg.data.local.database
+package com.example.tgh_rpg.data.local
 
 import androidx.room.TypeConverter
 import com.example.tgh_rpg.data.local.entity.TipoEvento
