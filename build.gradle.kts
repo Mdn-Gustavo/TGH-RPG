@@ -2,4 +2,6 @@
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.kotlin.compose) apply false
+    // Declare the plugin version centrally so app modules can apply it consistently.
+    id("com.google.gms.google-services") version "4.6.0" apply false
 }
