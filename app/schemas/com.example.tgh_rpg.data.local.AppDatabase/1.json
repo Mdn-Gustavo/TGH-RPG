@@ -1,0 +1,223 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "b92bcd0f1c8a78becc6eaf621a8b62bb",
+    "entities": [
+      {
+        "tableName": "encontros",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `titulo` TEXT NOT NULL, `texto` TEXT NOT NULL, `atualizadoEm` INTEGER NOT NULL, `a_rotulo` TEXT NOT NULL, `a_atributo` TEXT NOT NULL, `a_dificuldade` INTEGER NOT NULL, `a_textoSucesso` TEXT NOT NULL, `a_textoFalha` TEXT NOT NULL, `b_rotulo` TEXT NOT NULL, `b_atributo` TEXT NOT NULL, `b_dificuldade` INTEGER NOT NULL, `b_textoSucesso` TEXT NOT NULL, `b_textoFalha` TEXT NOT NULL, `c_rotulo` TEXT NOT NULL, `c_atributo` TEXT NOT NULL, `c_dificuldade` INTEGER NOT NULL, `c_textoSucesso` TEXT NOT NULL, `c_textoFalha` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "titulo",
+            "columnName": "titulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "texto",
+            "columnName": "texto",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "atualizadoEm",
+            "columnName": "atualizadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.rotulo",
+            "columnName": "a_rotulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.atributo",
+            "columnName": "a_atributo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.dificuldade",
+            "columnName": "a_dificuldade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.textoSucesso",
+            "columnName": "a_textoSucesso",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.textoFalha",
+            "columnName": "a_textoFalha",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.rotulo",
+            "columnName": "b_rotulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.atributo",
+            "columnName": "b_atributo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.dificuldade",
+            "columnName": "b_dificuldade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.textoSucesso",
+            "columnName": "b_textoSucesso",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.textoFalha",
+            "columnName": "b_textoFalha",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.rotulo",
+            "columnName": "c_rotulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.atributo",
+            "columnName": "c_atributo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.dificuldade",
+            "columnName": "c_dificuldade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.textoSucesso",
+            "columnName": "c_textoSucesso",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.textoFalha",
+            "columnName": "c_textoFalha",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "personagens",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nome` TEXT NOT NULL, `forca` INTEGER NOT NULL, `agilidade` INTEGER NOT NULL, `mente` INTEGER NOT NULL, `vida` INTEGER NOT NULL, `vidaMax` INTEGER NOT NULL, `eventos` INTEGER NOT NULL, `acertos` INTEGER NOT NULL, `status` TEXT NOT NULL, `recompensa` TEXT NOT NULL, `criadoEm` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forca",
+            "columnName": "forca",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "agilidade",
+            "columnName": "agilidade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mente",
+            "columnName": "mente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vida",
+            "columnName": "vida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vidaMax",
+            "columnName": "vidaMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventos",
+            "columnName": "eventos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acertos",
+            "columnName": "acertos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recompensa",
+            "columnName": "recompensa",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b92bcd0f1c8a78becc6eaf621a8b62bb')"
+    ]
+  }
+}
