@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="firebase_database_url" translatable="false">https://tgh-rpg-default-rtdb.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">556938448386</string>
+    <string name="google_api_key" translatable="false">AIzaSyD3wtS0SsIWr_vfkSsPgZK7jLwR6TaJU3I</string>
+    <string name="google_app_id" translatable="false">1:556938448386:android:2016834d1690a79b70e11b</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyD3wtS0SsIWr_vfkSsPgZK7jLwR6TaJU3I</string>
+    <string name="google_storage_bucket" translatable="false">tgh-rpg.firebasestorage.app</string>
+    <string name="project_id" translatable="false">tgh-rpg</string>
+</resources>

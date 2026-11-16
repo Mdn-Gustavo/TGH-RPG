@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/drawable_ic_launcher_background.xml.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/xml_backup_rules.xml.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.ght.app-debug-52:/raw_clique.mp3.flat",
+        "source": "com.example.ght.app-main-54:/raw/clique.mp3"
+    },
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/raw_musica_fundo.mp3.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/raw/musica_fundo.mp3"
+    },
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-debug-52:/xml_data_extraction_rules.xml.flat",
+        "source": "/home/tales/.gradle/daemon/9.6.0/com.example.ght.app-main-54:/xml/data_extraction_rules.xml"
+    }
+]
