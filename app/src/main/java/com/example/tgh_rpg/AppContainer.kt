@@ -7,8 +7,9 @@ import com.example.tgh_rpg.data.repository.EncontroRepository
 
 /* "Caixa de ferramentas" do app: cria cada peça uma vez e entrega para quem precisar.
   Em bons termos vai criar a bomba toda, cri o banco, os DAOs, o repository e o seed
-  uma vez só
+  uma vez só, yeah
 */
+
 class AppContainer(context: Context) {
     val db: AppDatabase = AppDatabase.getDatabase(context)
     val encontroDao = db.encontroDao()
