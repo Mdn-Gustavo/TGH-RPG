@@ -2,7 +2,7 @@ package com.example.ght.ui.menu
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ght.data.local.PersonagemDao
+import com.example.ght.data.repository.PersonagemRepository
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -22,7 +22,7 @@ sealed interface Event {
 }
 
 class VMMenu(
-    private val personagemDao: PersonagemDao
+    private val personagemRepository: PersonagemRepository
 ) : ViewModel() {
     private val _uiState = MutableStateFlow(MenuUiState())
     val uiState = _uiState.asStateFlow()
@@ -32,7 +32,7 @@ class VMMenu(
 
     init {
         viewModelScope.launch {
-            personagemDao.observarAtivo().collect { ativo ->
+            personagemRepository.observarAtivo().collect { ativo ->
                 _uiState.update { it.copy(jogoCriado = ativo != null) }
             }
         }

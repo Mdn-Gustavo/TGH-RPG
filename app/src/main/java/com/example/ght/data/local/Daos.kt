@@ -3,6 +3,7 @@ package com.example.ght.data.local
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
@@ -24,6 +25,9 @@ abstract class EncontroDao {
     @Upsert abstract suspend fun salvar(encontro: EncontroEntity)
     @Upsert abstract suspend fun salvarTodos(encontros: List<EncontroEntity>)
     @Delete abstract suspend fun apagar(encontro: EncontroEntity)
+
+    @Query("DELETE FROM encontros WHERE id = :id")
+    abstract suspend fun apagarPorId(id: String)
 
     @Query("DELETE FROM encontros")
     abstract suspend fun limparTudo()
@@ -54,11 +58,17 @@ interface PersonagemDao {
     @Insert
     suspend fun inserir(personagem: PersonagemEntity): Long
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun salvarSincronizado(personagem: PersonagemEntity)
+
     @Update
     suspend fun atualizar(personagem: PersonagemEntity)
 
     @Delete
     suspend fun apagar(personagem: PersonagemEntity)
+
+    @Query("DELETE FROM personagens WHERE id = :id")
+    suspend fun excluirPorId(id: Long)
 
     @Query("UPDATE personagens SET status = 'MORTO' WHERE status = 'EM_ANDAMENTO'")
     suspend fun encerrarAtivos()

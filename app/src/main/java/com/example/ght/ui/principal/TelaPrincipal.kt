@@ -39,10 +39,8 @@ fun TelaPrincipal(
     val uiState by viewModel.uiState.collectAsState()
 
     val emBatalha = uiState.batalha != null
-    // Em batalha usa o terminal da batalha; fora dela, o terminal normal
     val linhas = uiState.batalha?.linhas ?: uiState.linhas
 
-    // Quando o jogador morre, espera 2,5 segundos (para dar tempo de ler) e volta ao menu
     LaunchedEffect(uiState.morreu) {
         if (uiState.morreu) {
             delay(2500)
@@ -59,14 +57,12 @@ fun TelaPrincipal(
                 .fillMaxWidth()
                 .background(Color.Black)
         ) {
-            // reverseLayout = true: o item mais novo fica embaixo e os antigos vão subindo
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(start = 16.dp, end = 16.dp, top = 64.dp, bottom = 8.dp),
                 reverseLayout = true
             ) {
-                // asReversed() porque com reverseLayout o primeiro item da lista aparece embaixo
                 items(linhas.asReversed()) { linha ->
                     Text(
                         text = linha,
@@ -77,14 +73,12 @@ fun TelaPrincipal(
                 }
             }
 
-            // Botões do canto de cima
             Row(
                 modifier = Modifier
                     .align(Alignment.TopEnd)
                     .padding(8.dp),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // O inventário some durante a batalha
                 if (!emBatalha) {
                     Button(onClick = onIrParaInventario) {
                         Text("🎒")
@@ -98,7 +92,6 @@ fun TelaPrincipal(
 
         // ======== PARTE DE BAIXO (40%) ========
         if (!emBatalha) {
-            // Botões A e B
             Row(
                 modifier = Modifier
                     .weight(4f)
@@ -110,7 +103,6 @@ fun TelaPrincipal(
                 BotaoOpcao(letra = "B", onClick = { viewModel.escolherB() })
             }
         } else {
-            // Botões da batalha: 3 ataques + fugir, em grade 2x2
             Column(
                 modifier = Modifier
                     .weight(4f)
@@ -140,7 +132,6 @@ fun TelaPrincipal(
         }
     }
 
-    // Janela de configurações (só aparece quando mostrarConfig é true)
     if (uiState.mostrarConfig) {
         JanelaConfiguracoes(
             musicaMute = uiState.musicaMute,
@@ -164,7 +155,6 @@ private fun BotaoOpcao(
     }
 }
 
-// RowScope porque o botão usa weight(), que só existe dentro de uma Row
 @Composable
 private fun RowScope.BotaoBatalha(
     texto: String,

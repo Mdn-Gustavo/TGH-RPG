@@ -37,7 +37,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         modifier = modifier
     ) {
         composable<RotaMenu> {
-            val vmMenu = viewModel { VMMenu(container.personagemDao) }
+            val vmMenu = viewModel { VMMenu(container.personagemRepository) }
             val menuState by vmMenu.uiState.collectAsState()
 
             TelaMenu(
@@ -65,9 +65,9 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             TelaClasses(
                 onEscolherClasse = { letraClasse ->
                     scope.launch {
-                        container.personagemDao.encerrarAtivos()
+                        container.personagemRepository.encerrarAtivos()
                         val novo = novoPersonagem("Herói", Classe.daLetra(letraClasse))
-                        container.personagemDao.inserir(novo)
+                        container.personagemRepository.inserir(novo)
                         Inventario.limpar()
                         navController.navigate(RotaPrincipal(salaAtual = 0)) {
                             launchSingleTop = true
@@ -81,7 +81,7 @@ fun AppNavigation(modifier: Modifier = Modifier) {
             val vmPrincipal = viewModel {
                 VMPrincipal(
                     repository = container.encontroRepository,
-                    personagemDao = container.personagemDao
+                    personagemRepository = container.personagemRepository
                 )
             }
 

@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey
 
 enum class Atributo { FORCA, AGILIDADE, MENTE }
 
+// Todos os campos têm valor padrão para compatibilidade com desserialização do Firestore
 data class Opcao(
     val rotulo: String = "",
     val atributo: Atributo = Atributo.FORCA,
@@ -41,11 +42,11 @@ enum class StatusJogo { EM_ANDAMENTO, MORTO, VENCEU }
 @Entity(tableName = "personagens")
 data class PersonagemEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    val nome: String,
+    val nome: String = "",
     val classe: String = "A",
-    val forca: Int,
-    val agilidade: Int,
-    val mente: Int,
+    val forca: Int = 3,
+    val agilidade: Int = 3,
+    val mente: Int = 3,
     val vida: Int = 20,
     val vidaMax: Int = 20,
     val eventos: Int = 0,

@@ -9,10 +9,10 @@ import com.example.ght.data.Inventario
 import com.example.ght.data.Item
 import com.example.ght.data.local.EncontroEntity
 import com.example.ght.data.local.Opcao
-import com.example.ght.data.local.PersonagemDao
 import com.example.ght.data.local.PersonagemEntity
 import com.example.ght.data.local.StatusJogo
 import com.example.ght.data.repository.EncontroRepository
+import com.example.ght.data.repository.PersonagemRepository
 import com.example.ght.logic.Classe
 import com.example.ght.logic.aplicar
 import com.example.ght.logic.aplicarItem
@@ -41,7 +41,7 @@ data class PrincipalUiState(
 
 class VMPrincipal(
     private val repository: EncontroRepository,
-    private val personagemDao: PersonagemDao
+    private val personagemRepository: PersonagemRepository
 ) : ViewModel() {
 
     private var personagem: PersonagemEntity = novoPersonagem("Herói", Classe.GUERREIRO)
@@ -55,11 +55,11 @@ class VMPrincipal(
 
     init {
         viewModelScope.launch {
-            val ativo = personagemDao.buscarAtivo()
+            val ativo = personagemRepository.buscarAtivo()
             if (ativo != null) {
                 personagem = ativo
             } else {
-                val novoId = personagemDao.inserir(personagem)
+                val novoId = personagemRepository.inserir(personagem)
                 personagem = personagem.copy(id = novoId)
             }
             ataques = Ataques.da(personagem.classe)
@@ -155,7 +155,7 @@ class VMPrincipal(
                 adicionarLinhas(listOf("> Item obtido: ${item.nome} ${item.efeito}"))
             }
 
-            personagemDao.atualizar(personagem)
+            personagemRepository.atualizar(personagem)
 
             if (personagem.status == StatusJogo.MORTO) {
                 adicionarLinhas(listOf("> Você morreu... Seu progresso foi apagado."))
@@ -199,7 +199,7 @@ class VMPrincipal(
             status = if (novaVida <= 0) StatusJogo.MORTO else personagem.status
         )
         viewModelScope.launch {
-            personagemDao.atualizar(personagem)
+            personagemRepository.atualizar(personagem)
         }
 
         if (novaVida <= 0) {
@@ -213,7 +213,7 @@ class VMPrincipal(
     private fun registrarMorte() {
         Inventario.limpar()
         viewModelScope.launch {
-            personagemDao.encerrarAtivos()
+            personagemRepository.encerrarAtivos()
         }
         _uiState.update { it.copy(morreu = true) }
     }

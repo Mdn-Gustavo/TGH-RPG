@@ -1,6 +1,5 @@
 package com.example.ght.data
 
-// Um inimigo. Ex.: Inimigo("Orc", vida = 20, danoMin = 2, danoMax = 4)
 data class Inimigo(
     val nome: String,
     val vida: Int,
@@ -8,13 +7,11 @@ data class Inimigo(
     val danoMax: Int
 )
 
-// "chance" é em porcentagem (0 a 100) de a batalha acontecer
 data class Batalha(
     val chance: Int,
     val inimigo: Inimigo
 )
 
-// Um ataque do jogador. "chanceFalha" é em porcentagem (0 a 100)
 data class Ataque(
     val nome: String,
     val danoMin: Int,
@@ -22,8 +19,6 @@ data class Ataque(
     val chanceFalha: Int
 )
 
-// Ataques de cada classe (fixos, não mudam). Quanto mais forte, mais chance de falhar.
-// Os números e nomes são de exemplo.
 object Ataques {
     private val porClasse = mapOf(
         "A" to listOf(
