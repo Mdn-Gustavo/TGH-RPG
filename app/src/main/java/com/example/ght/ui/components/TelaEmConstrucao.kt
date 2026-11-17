@@ -12,7 +12,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-/** Tela temporária usada enquanto as telas reais não existem. Pode apagar depois. */
 @Composable
 fun TelaEmConstrucao(
     titulo: String,

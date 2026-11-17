@@ -95,7 +95,7 @@
       "textoSucesso": "Seus dedos acham o fio escondido e você pega uma poção intacta.",
       "textoFalha": "Uma agulha envenenada espeta seu dedo.",
       "itemNome": "Poção de cura",
-      "itemEfeito": "+ 8 vida",
+      "itemEfeito": "+ 8 vida máx",
       "itemCuraVida": 8
     },
     "opcaoC": {
@@ -194,7 +194,7 @@
       "textoSucesso": "Ele ri, bate no seu ombro e te dá um tônico revigorante.",
       "textoFalha": "Ele acha que você está zombando dele e te empurra para fora.",
       "itemNome": "Tônico de Taverna",
-      "itemEfeito": "+ 6 vida",
+      "itemEfeito": "+ 6 vida máx",
       "itemCuraVida": 6
     },
     "opcaoC": {
@@ -322,7 +322,7 @@
       "textoSucesso": "A estátua aceita sua resposta e abre passagem com uma bênção.",
       "textoFalha": "A resposta não a convence e ela te empurra para trás.",
       "itemNome": "Bênção do Guardião",
-      "itemEfeito": "+ 5 vida",
+      "itemEfeito": "+ 5 vida máx",
       "itemCuraVida": 5
     },
     "opcaoC": {

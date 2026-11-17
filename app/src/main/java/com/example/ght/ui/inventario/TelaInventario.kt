@@ -1,8 +1,11 @@
 package com.example.ght.ui.inventario
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,6 +17,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ght.ui.theme.FonteTerminal
@@ -25,6 +29,7 @@ fun TelaInventario(
     onVoltar: () -> Unit
 ) {
     val itens by viewModel.itens.collectAsState()
+    val uiState by viewModel.uiState.collectAsState()
 
     Box(
         modifier = Modifier
@@ -57,13 +62,30 @@ fun TelaInventario(
             }
         }
 
-        Button(
-            onClick = onVoltar,
+        Row(
             modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(8.dp)
+                .align(Alignment.TopCenter)
+                .fillMaxWidth()
+                .background(Color.Black)
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text("Voltar")
+            Text(
+                text = "FOR:${uiState.forca} AGI:${uiState.agilidade} MEN:${uiState.mente}",
+                color = LaranjaTerminal,
+                fontFamily = FonteTerminal,
+                fontSize = 13.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(end = 8.dp)
+            )
+
+            Button(onClick = onVoltar) {
+                Text("Voltar")
+            }
         }
     }
 }

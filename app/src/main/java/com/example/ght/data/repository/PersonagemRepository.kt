@@ -2,20 +2,17 @@ package com.example.ght.data.repository
 
 import com.example.ght.data.local.PersonagemDao
 import com.example.ght.data.local.PersonagemEntity
+import com.example.ght.data.local.StatusJogo
 import com.example.ght.data.remote.toFirestoreMap
 import com.example.ght.data.remote.toPersonagemEntity
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
-// Mantém Room como cache local reativo e espelha alterações de personagem no Firestore (trazido do TGH-att)
 class PersonagemRepository(
     private val personagemDao: PersonagemDao,
     private val firestore: FirebaseFirestore? = runCatching { FirebaseFirestore.getInstance() }.getOrNull()
@@ -28,8 +25,12 @@ class PersonagemRepository(
     fun observarAtivo(): Flow<PersonagemEntity?> =
         personagemDao.observarAtivo()
 
-    suspend fun buscarAtivo(): PersonagemEntity? =
-        personagemDao.buscarAtivo()
+    suspend fun buscarAtivo(): Result<PersonagemEntity?> =
+        try {
+            Result.success(personagemDao.buscarAtivo())
+        } catch (erro: Exception) {
+            Result.failure(erro)
+        }
 
     fun iniciarSincronizacao(
         scope: CoroutineScope,
@@ -63,29 +64,44 @@ class PersonagemRepository(
         }
     }
 
-    suspend fun inserir(personagem: PersonagemEntity): Long {
-        val id = personagemDao.inserir(personagem)
-        salvarNoFirestore(personagem.copy(id = id))
-        return id
-    }
-
-    suspend fun atualizar(personagem: PersonagemEntity) {
-        personagemDao.atualizar(personagem)
-        salvarNoFirestore(personagem)
-    }
-
-    suspend fun encerrarAtivos() {
-        val ativo = personagemDao.buscarAtivo()
-        personagemDao.encerrarAtivos()
-        if (ativo != null) {
-            salvarNoFirestore(ativo.copy(status = com.example.ght.data.local.StatusJogo.MORTO))
+    suspend fun inserir(personagem: PersonagemEntity): Result<Long> =
+        try {
+            val id = personagemDao.inserir(personagem)
+            salvarNoFirestore(personagem.copy(id = id))
+            Result.success(id)
+        } catch (erro: Exception) {
+            Result.failure(erro)
         }
-    }
 
-    suspend fun excluir(personagem: PersonagemEntity) {
-        personagemDao.apagar(personagem)
-        collection?.document(personagem.id.toString())?.delete()
-    }
+    suspend fun atualizar(personagem: PersonagemEntity): Result<Unit> =
+        try {
+            personagemDao.atualizar(personagem)
+            salvarNoFirestore(personagem)
+            Result.success(Unit)
+        } catch (erro: Exception) {
+            Result.failure(erro)
+        }
+
+    suspend fun encerrarAtivos(): Result<Unit> =
+        try {
+            val ativo = personagemDao.buscarAtivo()
+            personagemDao.encerrarAtivos()
+            if (ativo != null) {
+                salvarNoFirestore(ativo.copy(status = StatusJogo.MORTO))
+            }
+            Result.success(Unit)
+        } catch (erro: Exception) {
+            Result.failure(erro)
+        }
+
+    suspend fun excluir(personagem: PersonagemEntity): Result<Unit> =
+        try {
+            personagemDao.apagar(personagem)
+            collection?.document(personagem.id.toString())?.delete()
+            Result.success(Unit)
+        } catch (erro: Exception) {
+            Result.failure(erro)
+        }
 
     private fun salvarNoFirestore(personagem: PersonagemEntity) {
         collection?.document(personagem.id.toString())?.set(personagem.toFirestoreMap())

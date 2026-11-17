@@ -7,7 +7,6 @@ import com.example.ght.data.local.PersonagemEntity
 import com.example.ght.data.local.StatusJogo
 import com.google.firebase.firestore.DocumentSnapshot
 
-// Converte PersonagemEntity para mapa suportado pelo Cloud Firestore
 internal fun PersonagemEntity.toFirestoreMap(): Map<String, Any> = mapOf(
     "id" to id,
     "nome" to nome,
@@ -24,7 +23,6 @@ internal fun PersonagemEntity.toFirestoreMap(): Map<String, Any> = mapOf(
     "criadoEm" to criadoEm
 )
 
-// Reconstrói PersonagemEntity a partir de um DocumentSnapshot do Firestore
 internal fun DocumentSnapshot.toPersonagemEntity(): PersonagemEntity {
     val values = data ?: error("Documento de personagem sem dados: $id")
     return PersonagemEntity(

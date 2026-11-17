@@ -18,3 +18,13 @@ object RotaClasses
 
 @Serializable
 object RotaInventario
+
+@Serializable
+data class RotaFormEncontro(
+    val encontroId: String? = null
+)
+
+@Serializable
+data class RotaDetalheEncontro(
+    val encontroId: String
+)
