@@ -1,0 +1,336 @@
+[
+  {
+    "id": "ponte-mendigo",
+    "titulo": "O Mendigo da Ponte",
+    "texto": "Você atravessa uma velha ponte de pedra quando um mendigo estende a mão e pede uma esmola.",
+    "opcaoA": {
+      "rotulo": "Chutar o mendigo",
+      "atributo": "FORCA",
+      "dificuldade": 11,
+      "textoSucesso": "Ele cai de costas e solta um grito. Você passa sem que ele consiga se levantar.",
+      "textoFalha": "O mendigo era um velho soldado! Ele puxa uma adaga e parte para cima de você.",
+      "chanceBatalha": 50,
+      "inimigoNome": "Velho Soldado",
+      "inimigoVida": 14,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 4
+    },
+    "opcaoB": {
+      "rotulo": "Dar uma esmola e puxar conversa",
+      "atributo": "MENTE",
+      "dificuldade": 12,
+      "textoSucesso": "Ele agradece e te entrega um amuleto antigo antes de seguir viagem.",
+      "textoFalha": "Ele te enrola com uma história falsa e você acaba perdendo tempo.",
+      "itemNome": "Amuleto da Ponte",
+      "itemEfeito": "+ 2 mente",
+      "itemBonusMente": 2
+    },
+    "opcaoC": {
+      "rotulo": "Passar rápido, fingindo que não viu",
+      "atributo": "AGILIDADE",
+      "dificuldade": 10,
+      "textoSucesso": "Você desliza pela beirada da ponte e o deixa falando sozinho.",
+      "textoFalha": "Ele agarra sua capa e você só se solta depois de um tombo feio."
+    }
+  },
+  {
+    "id": "lobo-estrada",
+    "titulo": "O Lobo na Estrada",
+    "texto": "Um lobo magro bloqueia a estrada, rosnando baixo. Ele parece faminto.",
+    "opcaoA": {
+      "rotulo": "Enfrentar o lobo",
+      "atributo": "FORCA",
+      "dificuldade": 13,
+      "textoSucesso": "Você intimida a fera, mas ela ainda avança furiosa!",
+      "textoFalha": "O lobo salta e morde seu braço antes de recuar para atacar.",
+      "chanceBatalha": 85,
+      "inimigoNome": "Lobo Faminto",
+      "inimigoVida": 16,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 5
+    },
+    "opcaoB": {
+      "rotulo": "Fugir por entre as árvores",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Você corre em zigue-zague e o lobo desiste da perseguição.",
+      "textoFalha": "Você tropeça numa raiz e o lobo alcança você!",
+      "chanceBatalha": 40,
+      "inimigoNome": "Lobo Faminto",
+      "inimigoVida": 16,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 5
+    },
+    "opcaoC": {
+      "rotulo": "Acalmar o animal com a voz",
+      "atributo": "MENTE",
+      "dificuldade": 10,
+      "textoSucesso": "Você fala baixo e devagar, e o lobo se deita no chão.",
+      "textoFalha": "O lobo não se convence e te acerta uma mordida na perna."
+    }
+  },
+  {
+    "id": "bau-misterioso",
+    "titulo": "O Baú Abandonado",
+    "texto": "No meio da trilha há um baú coberto de musgo, sem dono à vista.",
+    "opcaoA": {
+      "rotulo": "Arrombar a tampa a pancadas",
+      "atributo": "FORCA",
+      "dificuldade": 10,
+      "textoSucesso": "A madeira racha e você encontra uma espada afiada lá dentro!",
+      "textoFalha": "O baú cria dentes e tenta morder sua mão!",
+      "itemNome": "Espada longa",
+      "itemEfeito": "+ 3 força",
+      "itemBonusForca": 3,
+      "chanceBatalha": 35,
+      "inimigoNome": "Mímico",
+      "inimigoVida": 18,
+      "inimigoDanoMin": 3,
+      "inimigoDanoMax": 6
+    },
+    "opcaoB": {
+      "rotulo": "Desarmar a trava com cuidado",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Seus dedos acham o fio escondido e você pega uma poção intacta.",
+      "textoFalha": "Uma agulha envenenada espeta seu dedo.",
+      "itemNome": "Poção de cura",
+      "itemEfeito": "+ 8 vida máx",
+      "itemCuraVida": 8
+    },
+    "opcaoC": {
+      "rotulo": "Ler as runas gravadas na tampa",
+      "atributo": "MENTE",
+      "dificuldade": 12,
+      "textoSucesso": "As runas avisam do truque. Você abre do jeito certo.",
+      "textoFalha": "Você lê errado e a tampa solta uma nuvem de pó que te queima os olhos."
+    }
+  },
+  {
+    "id": "ponte-quebrada",
+    "titulo": "A Ponte Quebrada",
+    "texto": "Metade das tábuas da ponte à sua frente está podre. Do outro lado, o caminho continua.",
+    "opcaoA": {
+      "rotulo": "Atravessar pendurado nas cordas",
+      "atributo": "FORCA",
+      "dificuldade": 12,
+      "textoSucesso": "Com os braços firmes, você chega do outro lado.",
+      "textoFalha": "Os braços cedem e você cai no rio, voltando molhado e dolorido."
+    },
+    "opcaoB": {
+      "rotulo": "Correr pelas tábuas inteiras",
+      "atributo": "AGILIDADE",
+      "dificuldade": 10,
+      "textoSucesso": "Você salta de tábua em tábua e chega rindo, achando botas leves na margem.",
+      "textoFalha": "Uma tábua cede e você bate a canela ao cair.",
+      "itemNome": "Botas leves",
+      "itemEfeito": "+ 4 agilidade",
+      "itemBonusAgilidade": 4
+    },
+    "opcaoC": {
+      "rotulo": "Estudar onde pisar",
+      "atributo": "MENTE",
+      "dificuldade": 14,
+      "textoSucesso": "Você nota quais tábuas aguentam e atravessa com calma.",
+      "textoFalha": "Você erra a conta e despenca numa tábua podre."
+    }
+  },
+  {
+    "id": "ladrao-viela",
+    "titulo": "O Ladrão da Viela",
+    "texto": "Numa viela estreita, um ladrão sai das sombras com uma faca na mão e pede sua bolsa.",
+    "opcaoA": {
+      "rotulo": "Lutar com o ladrão",
+      "atributo": "FORCA",
+      "dificuldade": 13,
+      "textoSucesso": "Você parte para o confronto direto!",
+      "textoFalha": "Ele te corta de raspão antes do duelo começar.",
+      "chanceBatalha": 80,
+      "inimigoNome": "Ladrão da Viela",
+      "inimigoVida": 15,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 5
+    },
+    "opcaoB": {
+      "rotulo": "Escapar pelos telhados",
+      "atributo": "AGILIDADE",
+      "dificuldade": 11,
+      "textoSucesso": "Você sobe numa caixa, alcança o telhado e some.",
+      "textoFalha": "Você escorrega no telhado e cai na frente dele!",
+      "chanceBatalha": 50,
+      "inimigoNome": "Ladrão da Viela",
+      "inimigoVida": 15,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 5
+    },
+    "opcaoC": {
+      "rotulo": "Convencer o ladrão a desistir",
+      "atributo": "MENTE",
+      "dificuldade": 12,
+      "textoSucesso": "Você fala sobre a guarda da cidade e ele recua assustado.",
+      "textoFalha": "Ele não cai na conversa e te empurra contra a parede."
+    }
+  },
+  {
+    "id": "taverna-brigao",
+    "titulo": "O Brigão da Taverna",
+    "texto": "Um homem enorme esbarra em você de propósito e começa a gritar que você derrubou a bebida dele.",
+    "opcaoA": {
+      "rotulo": "Aceitar a briga",
+      "atributo": "FORCA",
+      "dificuldade": 12,
+      "textoSucesso": "Você ergue os punhos e encara o gigante!",
+      "textoFalha": "Ele acerta um empurrão antes da briga começar.",
+      "chanceBatalha": 90,
+      "inimigoNome": "Brigão da Taverna",
+      "inimigoVida": 20,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 4
+    },
+    "opcaoB": {
+      "rotulo": "Pagar outra bebida e acalmá-lo",
+      "atributo": "MENTE",
+      "dificuldade": 10,
+      "textoSucesso": "Ele ri, bate no seu ombro e te dá um tônico revigorante.",
+      "textoFalha": "Ele acha que você está zombando dele e te empurra para fora.",
+      "itemNome": "Tônico de Taverna",
+      "itemEfeito": "+ 6 vida máx",
+      "itemCuraVida": 6
+    },
+    "opcaoC": {
+      "rotulo": "Esquivar e sair pela porta",
+      "atributo": "AGILIDADE",
+      "dificuldade": 13,
+      "textoSucesso": "Você se esquiva dos socos e sai antes que ele entenda.",
+      "textoFalha": "Você tropeça numa cadeira e leva um soco de raspão."
+    }
+  },
+  {
+    "id": "porta-trancada",
+    "titulo": "A Porta Trancada",
+    "texto": "Uma porta de ferro fecha a passagem. Há um buraco de fechadura e uma frase gravada ao lado.",
+    "opcaoA": {
+      "rotulo": "Arrombar a porta no ombro",
+      "atributo": "FORCA",
+      "dificuldade": 11,
+      "textoSucesso": "A porta cede com um estrondo e se abre.",
+      "textoFalha": "A porta não cede e seu ombro paga o preço."
+    },
+    "opcaoB": {
+      "rotulo": "Decifrar a frase gravada",
+      "atributo": "MENTE",
+      "dificuldade": 13,
+      "textoSucesso": "A frase era uma senha. A porta se abre e revela um grimório!",
+      "textoFalha": "Você diz a palavra errada e leva um choque da porta.",
+      "itemNome": "Grimório Antigo",
+      "itemEfeito": "+ 3 mente",
+      "itemBonusMente": 3
+    },
+    "opcaoC": {
+      "rotulo": "Abrir a fechadura com um grampo",
+      "atributo": "AGILIDADE",
+      "dificuldade": 13,
+      "textoSucesso": "O grampo gira e a porta destrava com um clique.",
+      "textoFalha": "O grampo quebra e a lâmina de uma armadilha raspa na sua mão."
+    }
+  },
+  {
+    "id": "ovo-de-dragao",
+    "titulo": "O Ninho Abandonado",
+    "texto": "Numa caverna rasa, há um ninho com um ovo brilhante. Algo grande se move nas sombras.",
+    "opcaoA": {
+      "rotulo": "Pegar o cristal ao lado do ninho",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Você anda na ponta dos pés e pega uma escama reluzente.",
+      "textoFalha": "Uma pedra rola e um lagarto gigante surge das sombras!",
+      "itemNome": "Escama Dracônica",
+      "itemEfeito": "+ 2 força",
+      "itemBonusForca": 2,
+      "chanceBatalha": 45,
+      "inimigoNome": "Lagarto das Cavernas",
+      "inimigoVida": 22,
+      "inimigoDanoMin": 3,
+      "inimigoDanoMax": 6
+    },
+    "opcaoB": {
+      "rotulo": "Recuar devagar sem tocar em nada",
+      "atributo": "MENTE",
+      "dificuldade": 10,
+      "textoSucesso": "Você observa os sinais no chão e sai da caverna em segurança.",
+      "textoFalha": "Você se distrai e bate a cabeça numa estalactite."
+    },
+    "opcaoC": {
+      "rotulo": "Pegar o ovo à força",
+      "atributo": "FORCA",
+      "dificuldade": 15,
+      "textoSucesso": "Você levanta o ovo pesado e sai da caverna.",
+      "textoFalha": "O ovo escorrega e você se machuca."
+    }
+  },
+  {
+    "id": "ruinas-sombras",
+    "titulo": "As Ruínas das Sombras",
+    "texto": "Em ruínas antigas, uma sombra sem dono se levanta do chão e sussurra o seu nome.",
+    "opcaoA": {
+      "rotulo": "Enfrentar a sombra",
+      "atributo": "FORCA",
+      "dificuldade": 12,
+      "textoSucesso": "Você ergue sua arma contra a aparição!",
+      "textoFalha": "A sombra gela seu peito antes do combate.",
+      "chanceBatalha": 75,
+      "inimigoNome": "Espectro das Ruínas",
+      "inimigoVida": 17,
+      "inimigoDanoMin": 2,
+      "inimigoDanoMax": 5
+    },
+    "opcaoB": {
+      "rotulo": "Ignorar o sussurro e manter a calma",
+      "atributo": "MENTE",
+      "dificuldade": 13,
+      "textoSucesso": "Você ignora a voz e a sombra se dissipa.",
+      "textoFalha": "O sussurro te domina por um instante e você cambaleia."
+    },
+    "opcaoC": {
+      "rotulo": "Desviar e passar correndo",
+      "atributo": "AGILIDADE",
+      "dificuldade": 12,
+      "textoSucesso": "Você passa por baixo dos braços da sombra e foge.",
+      "textoFalha": "A sombra te alcança e arranha suas costas."
+    }
+  },
+  {
+    "id": "guardiao-porta",
+    "titulo": "O Guardião da Porta",
+    "texto": "Uma estátua viva bloqueia a saída. Ela pergunta: \"Quem és tu e o que queres?\"",
+    "opcaoA": {
+      "rotulo": "Enfrentar o guardião de pedra",
+      "atributo": "FORCA",
+      "dificuldade": 13,
+      "textoSucesso": "Você prepara seu golpe contra a armadura de pedra!",
+      "textoFalha": "A estátua golpeia o chão e faz você perder o equilíbrio.",
+      "chanceBatalha": 80,
+      "inimigoNome": "Guardião de Pedra",
+      "inimigoVida": 24,
+      "inimigoDanoMin": 3,
+      "inimigoDanoMax": 6
+    },
+    "opcaoB": {
+      "rotulo": "Responder com sabedoria",
+      "atributo": "MENTE",
+      "dificuldade": 13,
+      "textoSucesso": "A estátua aceita sua resposta e abre passagem com uma bênção.",
+      "textoFalha": "A resposta não a convence e ela te empurra para trás.",
+      "itemNome": "Bênção do Guardião",
+      "itemEfeito": "+ 5 vida máx",
+      "itemCuraVida": 5
+    },
+    "opcaoC": {
+      "rotulo": "Driblar a estátua e passar",
+      "atributo": "AGILIDADE",
+      "dificuldade": 13,
+      "textoSucesso": "Você passa entre as pernas dela antes que ela vire.",
+      "textoFalha": "A estátua pisa na sua perna ao se virar."
+    }
+  }
+]
