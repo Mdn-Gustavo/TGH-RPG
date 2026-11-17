@@ -1,30 +1,78 @@
-# GHT — Integração `GHT-Integrado1` + `TGH-att` (Firebase / Cloud Firestore)
+# ⚔️ GHT — Aventura no Castelo
 
-Este repositório consolida o projeto **`GHT-Integrado1`** com as novidades trazidas no **`TGH-att`** (configuração do Firebase/Cloud Firestore, mapeamento remoto e sincronização em tempo real entre Firestore e Room), mantendo intacto todo o fluxo de jogo, combates, inventário e regras de RPG em `com.example.ght`.
+Bem-vindo ao **GHT**, um RPG de texto para Android onde cada escolha pode te levar à glória... ou ao fim da linha!
 
----
-
-## 1. O que havia de novo no `TGH-att` e como foi integrado
-
-| Novidade no `TGH-att` | Problema/Conflito encontrado ao comparar | Solução aplicada no `GHT` unificado |
-| :--- | :--- | :--- |
-| **Plugin `google-services` e dependências Firebase (`firebase-bom:35.2.0`, `firebase-firestore`, `firebase-analytics`)** | No `TGH-att/app/build.gradle.kts`, o plugin foi declarado com `apply false` por engano, e o `google-services.json` só tinha `package_name = "com.example.tgh_rpg"`. | Ativado `alias(libs.plugins.google.services)` corretamente no `app/build.gradle.kts`, adicionadas as dependências no `libs.versions.toml` e incluído o cliente `"com.example.ght"` no `app/google-services.json` (apontando para o mesmo projeto Firebase `tgh-rpg`). |
-| **Permissão de rede no `AndroidManifest.xml`** | O `GHT-Integrado1` ainda não tinha `android.permission.INTERNET`. | Adicionado `<uses-permission android:name="android.permission.INTERNET" />` no `AndroidManifest.xml`. |
-| **`data/remote/FirestoreMapping.kt`** | No `TGH-att`, o mapeamento usava campos de uma estrutura paralela (`hpAtual`, `hpMaximo`, `salaAtual`, `eventosVistos`, `marcas`) incompatível com a `PersonagemEntity` do Funes/Medina (`vida`, `vidaMax`, `eventos`, `acertos`, `status`). | Reescrito `FirestoreMapping.kt` no pacote `com.example.ght.data.remote` para converter fielmente tanto `PersonagemEntity` quanto `EncontroEntity` (incluindo `opcaoA/B/C`, itens e dados de batalha) para `Map<String, Any>` e `DocumentSnapshot`. |
-| **`PersonagemRepository` com `addSnapshotListener` e `Tasks.await`** | No `TGH-att`, havia dois `PersonagemDao` duplicados e o `PersonagemRepository` não tinha `observarAtivo()`, `buscarAtivo()` nem `encerrarAtivos()`, além de falhar sem fallback se estivesse offline. | Criado `com.example.ght.data.repository.PersonagemRepository` unindo os métodos de jogo ativo do `GHT-Integrado1` com o espelhamento em tempo real (`addSnapshotListener`) e gravação remota (`Tasks.await` protegido por `runCatching` para nunca travar o jogo offline). |
-| **Sincronização de `EncontroRepository` com Firestore (`TODO` do Funes)** | No `TGH-att`, o Funes havia deixado um `TODO` em `EncontroRepository.kt` aguardando a chegada do Firebase para sincronizar a coleção `"encontros"` com o Room. | Implementado `iniciarSincronizacao()` e espelhamento em `salvar()`/`apagar()` no `EncontroRepository`, mantendo a proteção de nunca apagar o cache local caso a coleção remota esteja vazia. |
-| **Inicialização do ciclo de vida dos listeners (`CasteloApp`)** | No `TGH-att`, os listeners eram iniciados em `GameViewModel` (tela de teste CRUD). | Movida a inicialização dos listeners de `encontros` e `personagens` para o `CasteloApp` (escopo de aplicação `SupervisorJob + Dispatchers.IO`), garantindo que o banco local fique sincronizado desde a abertura do app. |
+Tela preta, letras de terminal, dados rolando e um castelo cheio de perigos esperando por você. Até onde você consegue chegar? 🏰
 
 ---
 
-## 2. Resumo dos Arquivos Criados e Atualizados
+## 🎮 Como jogar
 
-* **`gradle/libs.versions.toml`, `build.gradle.kts`, `app/build.gradle.kts`**: Adicionados `google-services = "4.6.0"`, `firebase-bom = "35.2.0"`, `firebase-firestore`, `firebase-analytics`, `androidx-lifecycle-runtime-compose` e `androidx-lifecycle-viewmodel-ktx`.
-* **`app/google-services.json`**: Trazido do `TGH-att` e configurado com suporte ao pacote `com.example.ght`.
-* **`app/src/main/AndroidManifest.xml`**: Adicionada permissão `INTERNET` e mantido `android:name=".CasteloApp"`.
-* **`data/remote/FirestoreMapping.kt`** *(novo)*: Serialização e desserialização segura entre `PersonagemEntity` / `EncontroEntity` e Cloud Firestore.
-* **`data/repository/PersonagemRepository.kt`** *(novo)*: Camada unificada de persistência local (Room) + nuvem (Firestore) para o personagem ativo.
-* **`data/repository/EncontroRepository.kt`** *(atualizado)*: Adicionado listener em tempo real e espelhamento no Firestore para os encontros (preparando também o terreno para o **Modo ADM**).
-* **`data/local/Entidades.kt` e `data/local/Daos.kt`** *(atualizados)*: Adicionados valores padrão em `PersonagemEntity` (exigência do Firestore) e métodos `salvarSincronizado` / `excluirPorId` / `apagarPorId` nos DAOs.
-* **`AppContainer.kt`, `CasteloApp.kt`, `navigation/AppNavigation.kt`, `ui/menu/VMMenu.kt`, `ui/principal/VMPrincipal.kt`** *(atualizados)*: Conectados ao `PersonagemRepository` e aos listeners do Firestore.
-* **`app/src/androidTest/java/com/example/ght/data/local/DaoTest.kt`** *(novo)*: Testes instrumentados do Room trazidos do `TGH-att` e adaptados ao pacote `com.example.ght`.
+1. **Escolha sua classe** e comece a aventura.
+2. A cada encontro aparece uma situação e **duas opções: A ou B**.
+3. Escolha com sabedoria! O jogo rola um **d20** (dado de 20 lados), soma o seu atributo e compara com a dificuldade da opção.
+4. Sucesso? Você avança. Falhou? Você perde vida.
+5. Continue sobrevivendo, encontro após encontro, e veja até onde a sua sorte (e a sua coragem) te levam! 🏆
+
+> 🎲 **Tirou 20?** Sucesso garantido!
+> 💀 **Tirou 1?** Falha garantida... boa sorte!
+
+---
+
+## 🧙 As 4 classes
+
+| Classe | Estilo de luta |
+|---|---|
+| 🛡️ **Guerreiro** | Golpes rápidos, firmes e pesados |
+| 🏹 **Atirador** | Tiros simples, duplos e certeiros |
+| 🔮 **Mago** | Feitiços fraco, médio e forte |
+| 🗡️ **Ladino** | Cortes curtos, duplos e mortais |
+
+Cada classe nasce com **Força**, **Agilidade** e **Mente** diferentes. Escolha a que combina com o seu jeito de jogar!
+
+---
+
+## 👹 Batalhas
+
+Algumas escolhas despertam inimigos! Na batalha você pode:
+
+- ⚔️ **Atacar** com 3 golpes diferentes (os mais fortes erram mais!)
+- 🏃 **Fugir** (quanto mais Agilidade, maiores as chances)
+
+Vença e **recupere 20% da sua vida**. Mas cuidado: o inimigo também ataca de volta!
+
+---
+
+## 🎒 Itens e Inventário
+
+Encontrou um baú? Pode ter algo bom lá dentro! Itens dão **bônus de atributos** ou **cura**. Abra o inventário pelo botão 🎒 para ver tudo o que você coletou e seus atributos atuais.
+
+---
+
+## ☠️ Atenção
+
+Se a sua vida chegar a zero, **você morre e o progresso é apagado**. Aí é só escolher uma nova classe e tentar de novo!
+
+---
+
+## 🛠️ Modo ADM — crie suas próprias aventuras!
+
+Quer inventar seus próprios encontros? No menu, toque em **ADM** (no canto da tela) e depois em **Acesso ADM**. Lá você pode:
+
+- ➕ **Criar** novos encontros
+- ✏️ **Editar** e 🗑️ **apagar** os seus encontros
+- 🔍 Ver os **detalhes** de cada um
+- 📊 **Filtrar por dificuldade**, do mais fácil ao mais difícil (ou ao contrário)
+
+Os encontros que você criar entram no sorteio do jogo! Para voltar ao modo jogador, é só tocar em **JGD**.
+
+---
+
+## 🎵 Extras
+
+- Música de fundo para dar clima (dá para silenciar na engrenagem ⚙️ das configurações)
+- Seu jogo fica salvo: é só tocar em **Continuar jogo** para voltar de onde parou
+
+---
+
+Boa sorte, aventureiro(a)! O castelo te espera. 🏰✨
