@@ -55,6 +55,11 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                         }
                     }
                 },
+                onIrParaClasses = {
+                    navController.navigate(RotaClasses) {
+                        launchSingleTop = true
+                    }
+                },
                 onIrParaModoADM = {
                     navController.navigate(RotaModoADM) {
                         launchSingleTop = true

@@ -2,6 +2,7 @@ package com.example.ght.data.local
 
 import androidx.room.Embedded
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 enum class Atributo { FORCA, AGILIDADE, MENTE }
@@ -61,4 +62,16 @@ data class PersonagemEntity(
     val status: StatusJogo = StatusJogo.EM_ANDAMENTO,
     val recompensa: String = "",
     val criadoEm: Long = System.currentTimeMillis()
+)
+
+@Entity(tableName = "itens", indices = [Index("personagemId")])
+data class ItemEntity(
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    val personagemId: Long,
+    val nome: String,
+    val efeito: String,
+    val bonusForca: Int = 0,
+    val bonusAgilidade: Int = 0,
+    val bonusMente: Int = 0,
+    val curaVida: Int = 0
 )

@@ -2,7 +2,6 @@ package com.example.ght.ui.classes
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ght.data.Inventario
 import com.example.ght.data.repository.PersonagemRepository
 import com.example.ght.logic.Classe
 import com.example.ght.logic.novoPersonagem
@@ -38,7 +37,6 @@ class VMClasses(
             val novo = novoPersonagem("Herói", Classe.daLetra(letraClasse))
             personagemRepository.inserir(novo)
                 .onSuccess {
-                    Inventario.limpar()
                     _uiState.update { estado -> estado.copy(criando = false, criado = true) }
                 }
                 .onFailure { erro -> mostrarErro(erro) }

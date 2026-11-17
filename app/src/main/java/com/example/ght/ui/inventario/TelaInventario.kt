@@ -28,7 +28,8 @@ fun TelaInventario(
     viewModel: VMInventario,
     onVoltar: () -> Unit
 ) {
-    val itens by viewModel.itens.collectAsState()
+    val itensCarregados by viewModel.itens.collectAsState()
+    val itens = itensCarregados.orEmpty()
     val uiState by viewModel.uiState.collectAsState()
 
     Box(
@@ -41,7 +42,7 @@ fun TelaInventario(
                 .fillMaxSize()
                 .padding(start = 16.dp, end = 16.dp, top = 64.dp, bottom = 8.dp)
         ) {
-            if (itens.isEmpty()) {
+            if (itensCarregados != null && itens.isEmpty()) {
                 item {
                     Text(
                         text = "> Inventário vazio",

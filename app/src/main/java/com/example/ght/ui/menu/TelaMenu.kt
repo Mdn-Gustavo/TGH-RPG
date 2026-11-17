@@ -25,6 +25,7 @@ import com.example.ght.ui.components.JanelaConfiguracoes
 fun TelaMenu(
     viewModel: VMMenu,
     onIrParaJogo: () -> Unit,
+    onIrParaClasses: () -> Unit,
     onIrParaModoADM: () -> Unit
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -33,6 +34,7 @@ fun TelaMenu(
         viewModel.eventos.collect { evento ->
             when (evento) {
                 is Event.IrParaJogo -> onIrParaJogo()
+                is Event.IrParaClasses -> onIrParaClasses()
                 is Event.IrParaModoADM -> onIrParaModoADM()
             }
         }
@@ -75,6 +77,22 @@ fun TelaMenu(
                         text = if (uiState.jogoCriado) "Continuar jogo" else "Novo jogo",
                         fontSize = 25.sp
                     )
+                }
+
+                if (uiState.jogoCriado) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    Button(
+                        onClick = { viewModel.BotaoNovoJogo() },
+                        shape = RectangleShape,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(75.dp)
+                    ) {
+                        Text(
+                            text = "Novo jogo",
+                            fontSize = 25.sp
+                        )
+                    }
                 }
             }
         }
