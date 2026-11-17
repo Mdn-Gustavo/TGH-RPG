@@ -6,7 +6,6 @@ import androidx.room.PrimaryKey
 
 enum class Atributo { FORCA, AGILIDADE, MENTE }
 
-// Todos os campos têm valor padrão para compatibilidade com desserialização do Firestore
 data class Opcao(
     val rotulo: String = "",
     val atributo: Atributo = Atributo.FORCA,
@@ -36,6 +35,14 @@ data class EncontroEntity(
     @Embedded(prefix = "c_") val opcaoC: Opcao = Opcao(),
     val atualizadoEm: Long = 0L
 )
+
+const val PREFIXO_ID_ADM = "adm_"
+
+val EncontroEntity.criadoPeloAdm: Boolean
+    get() = id.startsWith(PREFIXO_ID_ADM)
+
+val EncontroEntity.dificuldadeMedia: Double
+    get() = (opcaoA.dificuldade + opcaoB.dificuldade) / 2.0
 
 enum class StatusJogo { EM_ANDAMENTO, MORTO, VENCEU }
 

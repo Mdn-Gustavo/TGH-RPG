@@ -2,6 +2,7 @@ package com.example.ght.ui.principal
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ght.audio.AudioManager
 import com.example.ght.data.Ataque
 import com.example.ght.data.Ataques
 import com.example.ght.data.Inimigo
@@ -16,6 +17,7 @@ import com.example.ght.data.repository.PersonagemRepository
 import com.example.ght.logic.Classe
 import com.example.ght.logic.aplicar
 import com.example.ght.logic.aplicarItem
+import com.example.ght.logic.curarPorcentagem
 import com.example.ght.logic.novoPersonagem
 import com.example.ght.logic.resolver
 import kotlinx.coroutines.delay
@@ -36,12 +38,16 @@ data class PrincipalUiState(
     val batalha: EstadoBatalha? = null,
     val morreu: Boolean = false,
     val mostrarConfig: Boolean = false,
-    val musicaMute: Boolean = false
+    val musicaMute: Boolean = false,
+    val vida: Int = 20,
+    val vidaMax: Int = 20,
+    val erro: String? = null
 )
 
 class VMPrincipal(
     private val repository: EncontroRepository,
-    private val personagemRepository: PersonagemRepository
+    private val personagemRepository: PersonagemRepository,
+    private val audioManager: AudioManager
 ) : ViewModel() {
 
     private var personagem: PersonagemEntity = novoPersonagem("Herói", Classe.GUERREIRO)
@@ -50,25 +56,49 @@ class VMPrincipal(
     var ataques: List<Ataque> = Ataques.da(personagem.classe)
         private set
 
-    private val _uiState = MutableStateFlow(PrincipalUiState())
+    private val _uiState = MutableStateFlow(PrincipalUiState(musicaMute = audioManager.musicaMutada.value))
     val uiState = _uiState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            val ativo = personagemRepository.buscarAtivo()
+            audioManager.musicaMutada.collect { mutada ->
+                _uiState.update { it.copy(musicaMute = mutada) }
+            }
+        }
+        viewModelScope.launch {
+            val resultado = personagemRepository.buscarAtivo()
+            if (resultado.isFailure) {
+                mostrarErro("Não foi possível carregar o personagem", resultado.exceptionOrNull())
+                return@launch
+            }
+            val ativo = resultado.getOrNull()
             if (ativo != null) {
                 personagem = ativo
             } else {
-                val novoId = personagemRepository.inserir(personagem)
-                personagem = personagem.copy(id = novoId)
+                personagemRepository.inserir(personagem)
+                    .onSuccess { novoId -> personagem = personagem.copy(id = novoId) }
+                    .onFailure { erro -> mostrarErro("Não foi possível criar o personagem", erro) }
             }
             ataques = Ataques.da(personagem.classe)
-            adicionarLinhas(
-                listOf(
-                    "> Classe ${personagem.classe} | Vida: ${personagem.vida}/${personagem.vidaMax} | FOR:${personagem.forca} AGI:${personagem.agilidade} MEN:${personagem.mente}"
-                )
-            )
+            sincronizarStatusUi()
             carregarProximoEncontro()
+        }
+    }
+
+    private fun mostrarErro(mensagem: String, erro: Throwable?) {
+        _uiState.update { it.copy(erro = "$mensagem: ${erro?.message}") }
+    }
+
+    fun fecharErro() {
+        _uiState.update { it.copy(erro = null) }
+    }
+
+    private fun sincronizarStatusUi() {
+        _uiState.update {
+            it.copy(
+                vida = personagem.vida,
+                vidaMax = personagem.vidaMax
+            )
         }
     }
 
@@ -89,16 +119,19 @@ class VMPrincipal(
 
     private suspend fun carregarProximoEncontro() {
         val excetoId = encontroAtual?.id ?: ""
-        var sorteado = repository.sortearProximo(excetoId).getOrNull()
+        var resultado = repository.sortearProximo(excetoId)
 
-        if (sorteado == null) {
+        if (resultado.getOrNull() == null) {
             delay(200)
-            sorteado = repository.sortearProximo("").getOrNull()
+            resultado = repository.sortearProximo("")
         }
 
+        val sorteado = resultado.getOrNull()
         if (sorteado != null) {
             encontroAtual = sorteado
             mostrarEncontroAtual(sorteado)
+        } else if (resultado.isFailure) {
+            mostrarErro("Não foi possível sortear o encontro", resultado.exceptionOrNull())
         } else {
             adicionarLinhas(listOf("> Nenhum encontro encontrado no banco de dados."))
         }
@@ -156,6 +189,8 @@ class VMPrincipal(
             }
 
             personagemRepository.atualizar(personagem)
+                .onFailure { erro -> mostrarErro("Não foi possível salvar o progresso", erro) }
+            sincronizarStatusUi()
 
             if (personagem.status == StatusJogo.MORTO) {
                 adicionarLinhas(listOf("> Você morreu... Seu progresso foi apagado."))
@@ -187,9 +222,7 @@ class VMPrincipal(
         adicionarLinhasBatalha(
             listOf("> Você entra em batalha! O ${inimigo.nome} te ataca e causa $dano de dano, o que você faz?")
         )
-        if (!aplicarDanoNoJogador(dano)) {
-            mostrarStatus()
-        }
+        aplicarDanoNoJogador(dano)
     }
 
     private fun aplicarDanoNoJogador(dano: Int): Boolean {
@@ -198,8 +231,12 @@ class VMPrincipal(
             vida = novaVida,
             status = if (novaVida <= 0) StatusJogo.MORTO else personagem.status
         )
-        viewModelScope.launch {
-            personagemRepository.atualizar(personagem)
+        sincronizarStatusUi()
+        if (novaVida > 0) {
+            viewModelScope.launch {
+                personagemRepository.atualizar(personagem)
+                    .onFailure { erro -> mostrarErro("Não foi possível salvar o progresso", erro) }
+            }
         }
 
         if (novaVida <= 0) {
@@ -213,16 +250,10 @@ class VMPrincipal(
     private fun registrarMorte() {
         Inventario.limpar()
         viewModelScope.launch {
-            personagemRepository.encerrarAtivos()
+            personagemRepository.excluir(personagem)
+                .onFailure { erro -> mostrarErro("Não foi possível apagar o personagem", erro) }
         }
         _uiState.update { it.copy(morreu = true) }
-    }
-
-    private fun mostrarStatus() {
-        val batalha = _uiState.value.batalha ?: return
-        adicionarLinhasBatalha(
-            listOf("Vida: você ${personagem.vida}/${personagem.vidaMax} | ${batalha.inimigo.nome} ${batalha.vidaInimigo}")
-        )
     }
 
     private fun turnoDoInimigo() {
@@ -234,7 +265,6 @@ class VMPrincipal(
 
         if (aplicarDanoNoJogador(dano)) return
 
-        mostrarStatus()
         adicionarLinhasBatalha(listOf("> O que você faz?"))
     }
 
@@ -253,7 +283,10 @@ class VMPrincipal(
             adicionarLinhasBatalha(listOf("> Você usou ${ataque.nome} e causa $dano de dano."))
 
             if (vidaRestante <= 0) {
-                sairDaBatalha("Você derrotou o ${batalha.inimigo.nome}!")
+                sairDaBatalha(
+                    mensagem = "Você derrotou o ${batalha.inimigo.nome}!",
+                    venceuBatalha = true
+                )
                 return
             }
             _uiState.update { it.copy(batalha = it.batalha?.copy(vidaInimigo = vidaRestante)) }
@@ -269,16 +302,32 @@ class VMPrincipal(
 
         val chanceFuga = personagem.agilidade.coerceIn(0, 100)
         if (sorteio(chanceFuga)) {
-            sairDaBatalha("Você fugiu do ${batalha.inimigo.nome}!")
+            sairDaBatalha(
+                mensagem = "Você fugiu do ${batalha.inimigo.nome}!",
+                venceuBatalha = false
+            )
         } else {
             adicionarLinhasBatalha(listOf("> Você tenta fugir, mas não consegue!"))
             turnoDoInimigo()
         }
     }
 
-    private fun sairDaBatalha(mensagem: String) {
+    private fun sairDaBatalha(mensagem: String, venceuBatalha: Boolean) {
         _uiState.update { it.copy(batalha = null) }
-        adicionarLinhas(listOf("> $mensagem"))
+        val mensagensSaida = mutableListOf("> $mensagem")
+
+        if (venceuBatalha) {
+            val (personagemCurado, curadoReal) = curarPorcentagem(personagem, 0.20)
+            personagem = personagemCurado
+            mensagensSaida.add("> Você recuperou $curadoReal de vida após a vitória!")
+            viewModelScope.launch {
+                personagemRepository.atualizar(personagem)
+                    .onFailure { erro -> mostrarErro("Não foi possível salvar o progresso", erro) }
+            }
+        }
+
+        sincronizarStatusUi()
+        adicionarLinhas(mensagensSaida)
         viewModelScope.launch {
             carregarProximoEncontro()
         }
@@ -293,6 +342,6 @@ class VMPrincipal(
     }
 
     fun alternarMusica() {
-        _uiState.update { it.copy(musicaMute = !it.musicaMute) }
+        audioManager.alternarMuteMusica()
     }
 }

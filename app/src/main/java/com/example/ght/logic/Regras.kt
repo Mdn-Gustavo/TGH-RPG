@@ -5,6 +5,7 @@ import com.example.ght.data.local.Atributo
 import com.example.ght.data.local.Opcao
 import com.example.ght.data.local.PersonagemEntity
 import com.example.ght.data.local.StatusJogo
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 const val TOTAL_EVENTOS = 10
@@ -70,11 +71,20 @@ fun aplicar(p: PersonagemEntity, r: Resultado): PersonagemEntity {
 }
 
 fun aplicarItem(p: PersonagemEntity, item: Item): PersonagemEntity {
-    val novaVida = (p.vida + item.curaVida).coerceAtMost(p.vidaMax)
+    val novaVidaMax = p.vidaMax + item.curaVida
+    val novaVida = (p.vida + item.curaVida).coerceAtMost(novaVidaMax)
     return p.copy(
         forca = p.forca + item.bonusForca,
         agilidade = p.agilidade + item.bonusAgilidade,
         mente = p.mente + item.bonusMente,
+        vidaMax = novaVidaMax,
         vida = novaVida
     )
+}
+
+fun curarPorcentagem(p: PersonagemEntity, porcentagem: Double): Pair<PersonagemEntity, Int> {
+    val curaTotal = (p.vidaMax * porcentagem).roundToInt().coerceAtLeast(1)
+    val novaVida = (p.vida + curaTotal).coerceAtMost(p.vidaMax)
+    val curadoReal = novaVida - p.vida
+    return p.copy(vida = novaVida) to curadoReal
 }

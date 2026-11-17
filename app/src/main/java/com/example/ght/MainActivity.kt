@@ -12,6 +12,11 @@ import com.example.ght.navigation.AppNavigation
 import com.example.ght.ui.theme.GHTTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val audioManager by lazy {
+        (application as CasteloApp).container.audioManager
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,5 +27,15 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        audioManager.iniciarMusica()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        audioManager.pausarMusica()
     }
 }

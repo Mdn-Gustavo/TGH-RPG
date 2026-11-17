@@ -1,5 +1,6 @@
 package com.example.ght.logic
 
+import com.example.ght.data.Item
 import com.example.ght.data.local.Atributo
 import com.example.ght.data.local.Opcao
 import com.example.ght.data.local.StatusJogo
@@ -59,5 +60,21 @@ class RegrasTest {
         assertEquals(StatusJogo.VENCEU, p.status)
         assertEquals(RECOMPENSA_FINAL, p.recompensa)
         assertEquals(20, p.vida)
+    }
+
+    @Test
+    fun itemDeVidaAumentaVidaMaximaEAtual() {
+        val pocao = Item(nome = "Poção", efeito = "+ 8 vida máx", curaVida = 8)
+        val depois = aplicarItem(guerreiro, pocao)
+        assertEquals(28, depois.vidaMax)
+        assertEquals(28, depois.vida)
+    }
+
+    @Test
+    fun curarVintePorCentoRespeitaVidaMaxima() {
+        val ferido = guerreiro.copy(vida = 10, vidaMax = 20)
+        val (curado, qtd) = curarPorcentagem(ferido, 0.20)
+        assertEquals(4, qtd)
+        assertEquals(14, curado.vida)
     }
 }

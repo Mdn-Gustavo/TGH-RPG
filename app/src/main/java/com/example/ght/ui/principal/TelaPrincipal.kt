@@ -13,8 +13,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -23,9 +26,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ght.ui.components.JanelaConfiguracoes
+import com.example.ght.ui.theme.CorBotaoA
+import com.example.ght.ui.theme.CorBotaoB
 import com.example.ght.ui.theme.FonteTerminal
 import com.example.ght.ui.theme.VerdeTerminal
 import kotlinx.coroutines.delay
@@ -49,8 +55,6 @@ fun TelaPrincipal(
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
-
-        // ======== PARTE DE CIMA (60%): terminal ========
         Box(
             modifier = Modifier
                 .weight(6f)
@@ -75,22 +79,45 @@ fun TelaPrincipal(
 
             Row(
                 modifier = Modifier
-                    .align(Alignment.TopEnd)
-                    .padding(8.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    .align(Alignment.TopCenter)
+                    .fillMaxWidth()
+                    .background(Color.Black)
+                    .padding(horizontal = 12.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                if (!emBatalha) {
-                    Button(onClick = onIrParaInventario) {
-                        Text("🎒")
-                    }
+                val batalhaAtual = uiState.batalha
+                val textoStatus = if (batalhaAtual != null) {
+                    "HP:${uiState.vida}/${uiState.vidaMax} | ${batalhaAtual.inimigo.nome}:${batalhaAtual.vidaInimigo}"
+                } else {
+                    "HP:${uiState.vida}/${uiState.vidaMax}"
                 }
-                Button(onClick = { viewModel.abrirConfig() }) {
-                    Text("⚙")
+
+                Text(
+                    text = textoStatus,
+                    color = VerdeTerminal,
+                    fontFamily = FonteTerminal,
+                    fontSize = 13.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(end = 8.dp)
+                )
+
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (!emBatalha) {
+                        Button(onClick = onIrParaInventario) {
+                            Text("🎒")
+                        }
+                    }
+                    Button(onClick = { viewModel.abrirConfig() }) {
+                        Text("⚙")
+                    }
                 }
             }
         }
 
-        // ======== PARTE DE BAIXO (40%) ========
         if (!emBatalha) {
             Row(
                 modifier = Modifier
@@ -99,8 +126,16 @@ fun TelaPrincipal(
                 horizontalArrangement = Arrangement.SpaceEvenly,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                BotaoOpcao(letra = "A", onClick = { viewModel.escolherA() })
-                BotaoOpcao(letra = "B", onClick = { viewModel.escolherB() })
+                BotaoOpcao(
+                    letra = "A",
+                    corFundo = CorBotaoA,
+                    onClick = { viewModel.escolherA() }
+                )
+                BotaoOpcao(
+                    letra = "B",
+                    corFundo = CorBotaoB,
+                    onClick = { viewModel.escolherB() }
+                )
             }
         } else {
             Column(
@@ -132,6 +167,19 @@ fun TelaPrincipal(
         }
     }
 
+    uiState.erro?.let { mensagem ->
+        AlertDialog(
+            onDismissRequest = { viewModel.fecharErro() },
+            title = { Text("Ops!") },
+            text = { Text(mensagem) },
+            confirmButton = {
+                TextButton(onClick = { viewModel.fecharErro() }) {
+                    Text("OK")
+                }
+            }
+        )
+    }
+
     if (uiState.mostrarConfig) {
         JanelaConfiguracoes(
             musicaMute = uiState.musicaMute,
@@ -144,14 +192,19 @@ fun TelaPrincipal(
 @Composable
 private fun BotaoOpcao(
     letra: String,
+    corFundo: Color,
     onClick: () -> Unit
 ) {
     Button(
         onClick = onClick,
         shape = RectangleShape,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = corFundo,
+            contentColor = Color.White
+        ),
         modifier = Modifier.size(130.dp)
     ) {
-        Text(text = letra, fontSize = 48.sp)
+        Text(text = letra, fontSize = 60.sp)
     }
 }
 

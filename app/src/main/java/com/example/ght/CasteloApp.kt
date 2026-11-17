@@ -19,12 +19,10 @@ class CasteloApp : Application() {
         super.onCreate()
         container = AppContainer(this)
 
-        // Carrega encontros locais iniciais caso o Room esteja vazio
         appScope.launch {
             container.seedLoader.carregarSeVazio()
         }
 
-        // Inicia sincronização em tempo real entre Cloud Firestore e Room (com fallback offline)
         container.encontroRepository.iniciarSincronizacao(appScope) { erro ->
             Log.w("CasteloApp", "Sincronização de encontros indisponível (modo offline): ${erro.message}")
         }?.let { syncListeners.add(it) }

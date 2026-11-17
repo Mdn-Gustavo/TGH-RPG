@@ -19,6 +19,9 @@ abstract class EncontroDao {
     @Query("SELECT * FROM encontros WHERE id != :excetoId ORDER BY RANDOM() LIMIT 1")
     abstract suspend fun sortearUm(excetoId: String): EncontroEntity?
 
+    @Query("SELECT * FROM encontros WHERE id = :id")
+    abstract suspend fun buscarPorId(id: String): EncontroEntity?
+
     @Query("SELECT COUNT(*) FROM encontros")
     abstract suspend fun contar(): Int
 
