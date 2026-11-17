@@ -27,9 +27,13 @@ class AppViewModelFactory(
             VMPrincipal::class.java -> VMPrincipal(
                 repository = container.encontroRepository,
                 personagemRepository = container.personagemRepository,
+                inventarioRepository = container.inventarioRepository,
                 audioManager = container.audioManager
             )
-            VMInventario::class.java -> VMInventario(container.personagemRepository)
+            VMInventario::class.java -> VMInventario(
+                container.personagemRepository,
+                container.inventarioRepository
+            )
             VMModoAdm::class.java -> VMModoAdm(container.encontroRepository)
             VMFormEncontro::class.java -> VMFormEncontro(container.encontroRepository, encontroId)
             VMDetalheEncontro::class.java -> VMDetalheEncontro(container.encontroRepository, encontroId ?: "")

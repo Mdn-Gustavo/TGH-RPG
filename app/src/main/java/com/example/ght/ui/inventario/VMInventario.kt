@@ -2,10 +2,14 @@ package com.example.ght.ui.inventario
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.ght.data.Inventario
+import com.example.ght.data.Item
+import com.example.ght.data.repository.InventarioRepository
 import com.example.ght.data.repository.PersonagemRepository
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
@@ -16,10 +20,12 @@ data class InventarioUiState(
 )
 
 class VMInventario(
-    personagemRepository: PersonagemRepository
+    personagemRepository: PersonagemRepository,
+    inventarioRepository: InventarioRepository
 ) : ViewModel() {
 
-    val itens = Inventario.itens
+    val itens: StateFlow<List<Item>?> = inventarioRepository.observarDoAtivo()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
     private val _uiState = MutableStateFlow(InventarioUiState())
     val uiState = _uiState.asStateFlow()

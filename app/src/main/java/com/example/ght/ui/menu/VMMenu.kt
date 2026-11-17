@@ -21,6 +21,7 @@ data class MenuUiState(
 sealed interface Event {
     object IrParaModoADM : Event
     object IrParaJogo : Event
+    object IrParaClasses : Event
 }
 
 class VMMenu(
@@ -55,6 +56,12 @@ class VMMenu(
     fun BotaoADM() {
         viewModelScope.launch {
             _eventos.send(Event.IrParaModoADM)
+        }
+    }
+
+    fun BotaoNovoJogo() {
+        viewModelScope.launch {
+            _eventos.send(Event.IrParaClasses)
         }
     }
 

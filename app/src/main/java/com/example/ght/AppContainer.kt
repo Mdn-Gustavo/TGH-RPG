@@ -5,14 +5,17 @@ import com.example.ght.audio.AudioManager
 import com.example.ght.data.local.AppDatabase
 import com.example.ght.data.local.SeedLoader
 import com.example.ght.data.repository.EncontroRepository
+import com.example.ght.data.repository.InventarioRepository
 import com.example.ght.data.repository.PersonagemRepository
 
 class AppContainer(context: Context) {
     val db: AppDatabase = AppDatabase.getDatabase(context)
     val encontroDao = db.encontroDao()
     val personagemDao = db.personagemDao()
+    val itemDao = db.itemDao()
     val encontroRepository = EncontroRepository(encontroDao)
-    val personagemRepository = PersonagemRepository(personagemDao)
+    val personagemRepository = PersonagemRepository(personagemDao, itemDao)
+    val inventarioRepository = InventarioRepository(itemDao)
     val seedLoader = SeedLoader(context.applicationContext, encontroDao)
     val audioManager = AudioManager(context.applicationContext)
 }

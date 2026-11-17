@@ -1,8 +1,6 @@
 package com.example.ght.data
 
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.update
+import com.example.ght.data.local.ItemEntity
 
 data class Item(
     val nome: String,
@@ -13,22 +11,31 @@ data class Item(
     val curaVida: Int = 0
 )
 
-object Inventario {
-    private val _itens = MutableStateFlow<List<Item>>(emptyList())
-    val itens = _itens.asStateFlow()
+fun Item.paraEntity(personagemId: Long) = ItemEntity(
+    personagemId = personagemId,
+    nome = nome,
+    efeito = efeito,
+    bonusForca = bonusForca,
+    bonusAgilidade = bonusAgilidade,
+    bonusMente = bonusMente,
+    curaVida = curaVida
+)
 
-    fun adicionar(item: Item) {
-        _itens.update { lista ->
-            val posicao = lista.indexOfLast { it.nome == item.nome }
-            if (posicao == -1) {
-                lista + item
-            } else {
-                lista.toMutableList().apply { add(posicao + 1, item) }
-            }
+fun ItemEntity.paraItem() = Item(
+    nome = nome,
+    efeito = efeito,
+    bonusForca = bonusForca,
+    bonusAgilidade = bonusAgilidade,
+    bonusMente = bonusMente,
+    curaVida = curaVida
+)
+
+fun agruparPorNome(itens: List<Item>): List<Item> =
+    itens.fold(emptyList<Item>()) { lista, item ->
+        val posicao = lista.indexOfLast { it.nome == item.nome }
+        if (posicao == -1) {
+            lista + item
+        } else {
+            lista.toMutableList().apply { add(posicao + 1, item) }
         }
     }
-
-    fun limpar() {
-        _itens.value = emptyList()
-    }
-}

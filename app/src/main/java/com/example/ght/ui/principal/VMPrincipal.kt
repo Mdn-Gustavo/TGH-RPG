@@ -6,13 +6,13 @@ import com.example.ght.audio.AudioManager
 import com.example.ght.data.Ataque
 import com.example.ght.data.Ataques
 import com.example.ght.data.Inimigo
-import com.example.ght.data.Inventario
 import com.example.ght.data.Item
 import com.example.ght.data.local.EncontroEntity
 import com.example.ght.data.local.Opcao
 import com.example.ght.data.local.PersonagemEntity
 import com.example.ght.data.local.StatusJogo
 import com.example.ght.data.repository.EncontroRepository
+import com.example.ght.data.repository.InventarioRepository
 import com.example.ght.data.repository.PersonagemRepository
 import com.example.ght.logic.Classe
 import com.example.ght.logic.aplicar
@@ -47,6 +47,7 @@ data class PrincipalUiState(
 class VMPrincipal(
     private val repository: EncontroRepository,
     private val personagemRepository: PersonagemRepository,
+    private val inventarioRepository: InventarioRepository,
     private val audioManager: AudioManager
 ) : ViewModel() {
 
@@ -183,7 +184,8 @@ class VMPrincipal(
                     bonusMente = opcao.itemBonusMente,
                     curaVida = opcao.itemCuraVida
                 )
-                Inventario.adicionar(item)
+                inventarioRepository.adicionar(personagem.id, item)
+                    .onFailure { erro -> mostrarErro("Não foi possível salvar o item", erro) }
                 personagem = aplicarItem(personagem, item)
                 adicionarLinhas(listOf("> Item obtido: ${item.nome} ${item.efeito}"))
             }
@@ -248,7 +250,6 @@ class VMPrincipal(
     }
 
     private fun registrarMorte() {
-        Inventario.limpar()
         viewModelScope.launch {
             personagemRepository.excluir(personagem)
                 .onFailure { erro -> mostrarErro("Não foi possível apagar o personagem", erro) }

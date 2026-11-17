@@ -1,5 +1,6 @@
 package com.example.ght.data.repository
 
+import com.example.ght.data.local.ItemDao
 import com.example.ght.data.local.PersonagemDao
 import com.example.ght.data.local.PersonagemEntity
 import com.example.ght.data.local.StatusJogo
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 
 class PersonagemRepository(
     private val personagemDao: PersonagemDao,
+    private val itemDao: ItemDao,
     private val firestore: FirebaseFirestore? = runCatching { FirebaseFirestore.getInstance() }.getOrNull()
 ) {
     private val collection = firestore?.collection("personagens")
@@ -55,6 +57,7 @@ class PersonagemRepository(
                             personagemDao.salvarSincronizado(change.document.toPersonagemEntity())
                         }
                     }
+                    itemDao.apagarOrfaos()
                 } catch (exception: CancellationException) {
                     throw exception
                 } catch (exception: Exception) {
@@ -86,6 +89,7 @@ class PersonagemRepository(
         try {
             val ativo = personagemDao.buscarAtivo()
             personagemDao.encerrarAtivos()
+            itemDao.apagarOrfaos()
             if (ativo != null) {
                 salvarNoFirestore(ativo.copy(status = StatusJogo.MORTO))
             }
@@ -97,6 +101,7 @@ class PersonagemRepository(
     suspend fun excluir(personagem: PersonagemEntity): Result<Unit> =
         try {
             personagemDao.apagar(personagem)
+            itemDao.apagarOrfaos()
             collection?.document(personagem.id.toString())?.delete()
             Result.success(Unit)
         } catch (erro: Exception) {
