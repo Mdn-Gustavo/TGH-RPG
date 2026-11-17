@@ -1,0 +1,486 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "1d60ffea8b40e96d1a89360b6b91f074",
+    "entities": [
+      {
+        "tableName": "encontros",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `titulo` TEXT NOT NULL, `texto` TEXT NOT NULL, `atualizadoEm` INTEGER NOT NULL, `a_rotulo` TEXT NOT NULL, `a_atributo` TEXT NOT NULL, `a_dificuldade` INTEGER NOT NULL, `a_textoSucesso` TEXT NOT NULL, `a_textoFalha` TEXT NOT NULL, `a_chanceBatalha` INTEGER, `a_inimigoNome` TEXT, `a_inimigoVida` INTEGER NOT NULL, `a_inimigoDanoMin` INTEGER NOT NULL, `a_inimigoDanoMax` INTEGER NOT NULL, `a_itemNome` TEXT, `a_itemEfeito` TEXT, `a_itemBonusForca` INTEGER NOT NULL, `a_itemBonusAgilidade` INTEGER NOT NULL, `a_itemBonusMente` INTEGER NOT NULL, `a_itemCuraVida` INTEGER NOT NULL, `b_rotulo` TEXT NOT NULL, `b_atributo` TEXT NOT NULL, `b_dificuldade` INTEGER NOT NULL, `b_textoSucesso` TEXT NOT NULL, `b_textoFalha` TEXT NOT NULL, `b_chanceBatalha` INTEGER, `b_inimigoNome` TEXT, `b_inimigoVida` INTEGER NOT NULL, `b_inimigoDanoMin` INTEGER NOT NULL, `b_inimigoDanoMax` INTEGER NOT NULL, `b_itemNome` TEXT, `b_itemEfeito` TEXT, `b_itemBonusForca` INTEGER NOT NULL, `b_itemBonusAgilidade` INTEGER NOT NULL, `b_itemBonusMente` INTEGER NOT NULL, `b_itemCuraVida` INTEGER NOT NULL, `c_rotulo` TEXT NOT NULL, `c_atributo` TEXT NOT NULL, `c_dificuldade` INTEGER NOT NULL, `c_textoSucesso` TEXT NOT NULL, `c_textoFalha` TEXT NOT NULL, `c_chanceBatalha` INTEGER, `c_inimigoNome` TEXT, `c_inimigoVida` INTEGER NOT NULL, `c_inimigoDanoMin` INTEGER NOT NULL, `c_inimigoDanoMax` INTEGER NOT NULL, `c_itemNome` TEXT, `c_itemEfeito` TEXT, `c_itemBonusForca` INTEGER NOT NULL, `c_itemBonusAgilidade` INTEGER NOT NULL, `c_itemBonusMente` INTEGER NOT NULL, `c_itemCuraVida` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "titulo",
+            "columnName": "titulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "texto",
+            "columnName": "texto",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "atualizadoEm",
+            "columnName": "atualizadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.rotulo",
+            "columnName": "a_rotulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.atributo",
+            "columnName": "a_atributo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.dificuldade",
+            "columnName": "a_dificuldade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.textoSucesso",
+            "columnName": "a_textoSucesso",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.textoFalha",
+            "columnName": "a_textoFalha",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.chanceBatalha",
+            "columnName": "a_chanceBatalha",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "opcaoA.inimigoNome",
+            "columnName": "a_inimigoNome",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoA.inimigoVida",
+            "columnName": "a_inimigoVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.inimigoDanoMin",
+            "columnName": "a_inimigoDanoMin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.inimigoDanoMax",
+            "columnName": "a_inimigoDanoMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.itemNome",
+            "columnName": "a_itemNome",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoA.itemEfeito",
+            "columnName": "a_itemEfeito",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoA.itemBonusForca",
+            "columnName": "a_itemBonusForca",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.itemBonusAgilidade",
+            "columnName": "a_itemBonusAgilidade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.itemBonusMente",
+            "columnName": "a_itemBonusMente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoA.itemCuraVida",
+            "columnName": "a_itemCuraVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.rotulo",
+            "columnName": "b_rotulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.atributo",
+            "columnName": "b_atributo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.dificuldade",
+            "columnName": "b_dificuldade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.textoSucesso",
+            "columnName": "b_textoSucesso",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.textoFalha",
+            "columnName": "b_textoFalha",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.chanceBatalha",
+            "columnName": "b_chanceBatalha",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "opcaoB.inimigoNome",
+            "columnName": "b_inimigoNome",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoB.inimigoVida",
+            "columnName": "b_inimigoVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.inimigoDanoMin",
+            "columnName": "b_inimigoDanoMin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.inimigoDanoMax",
+            "columnName": "b_inimigoDanoMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.itemNome",
+            "columnName": "b_itemNome",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoB.itemEfeito",
+            "columnName": "b_itemEfeito",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoB.itemBonusForca",
+            "columnName": "b_itemBonusForca",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.itemBonusAgilidade",
+            "columnName": "b_itemBonusAgilidade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.itemBonusMente",
+            "columnName": "b_itemBonusMente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoB.itemCuraVida",
+            "columnName": "b_itemCuraVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.rotulo",
+            "columnName": "c_rotulo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.atributo",
+            "columnName": "c_atributo",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.dificuldade",
+            "columnName": "c_dificuldade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.textoSucesso",
+            "columnName": "c_textoSucesso",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.textoFalha",
+            "columnName": "c_textoFalha",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.chanceBatalha",
+            "columnName": "c_chanceBatalha",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "opcaoC.inimigoNome",
+            "columnName": "c_inimigoNome",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoC.inimigoVida",
+            "columnName": "c_inimigoVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.inimigoDanoMin",
+            "columnName": "c_inimigoDanoMin",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.inimigoDanoMax",
+            "columnName": "c_inimigoDanoMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.itemNome",
+            "columnName": "c_itemNome",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoC.itemEfeito",
+            "columnName": "c_itemEfeito",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "opcaoC.itemBonusForca",
+            "columnName": "c_itemBonusForca",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.itemBonusAgilidade",
+            "columnName": "c_itemBonusAgilidade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.itemBonusMente",
+            "columnName": "c_itemBonusMente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opcaoC.itemCuraVida",
+            "columnName": "c_itemCuraVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "personagens",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nome` TEXT NOT NULL, `classe` TEXT NOT NULL, `forca` INTEGER NOT NULL, `agilidade` INTEGER NOT NULL, `mente` INTEGER NOT NULL, `vida` INTEGER NOT NULL, `vidaMax` INTEGER NOT NULL, `eventos` INTEGER NOT NULL, `acertos` INTEGER NOT NULL, `status` TEXT NOT NULL, `recompensa` TEXT NOT NULL, `criadoEm` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "classe",
+            "columnName": "classe",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "forca",
+            "columnName": "forca",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "agilidade",
+            "columnName": "agilidade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mente",
+            "columnName": "mente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vida",
+            "columnName": "vida",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vidaMax",
+            "columnName": "vidaMax",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "eventos",
+            "columnName": "eventos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "acertos",
+            "columnName": "acertos",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "recompensa",
+            "columnName": "recompensa",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "criadoEm",
+            "columnName": "criadoEm",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "itens",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `personagemId` INTEGER NOT NULL, `nome` TEXT NOT NULL, `efeito` TEXT NOT NULL, `bonusForca` INTEGER NOT NULL, `bonusAgilidade` INTEGER NOT NULL, `bonusMente` INTEGER NOT NULL, `curaVida` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "personagemId",
+            "columnName": "personagemId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nome",
+            "columnName": "nome",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "efeito",
+            "columnName": "efeito",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bonusForca",
+            "columnName": "bonusForca",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bonusAgilidade",
+            "columnName": "bonusAgilidade",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bonusMente",
+            "columnName": "bonusMente",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "curaVida",
+            "columnName": "curaVida",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_itens_personagemId",
+            "unique": false,
+            "columnNames": [
+              "personagemId"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_itens_personagemId` ON `${TABLE_NAME}` (`personagemId`)"
+          }
+        ]
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '1d60ffea8b40e96d1a89360b6b91f074')"
+    ]
+  }
+}

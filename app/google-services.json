@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "556938448386",
+    "firebase_url": "https://tgh-rpg-default-rtdb.firebaseio.com",
+    "project_id": "tgh-rpg",
+    "storage_bucket": "tgh-rpg.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556938448386:android:2016834d1690a79b70e11b",
+        "android_client_info": {
+          "package_name": "com.example.ght"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3wtS0SsIWr_vfkSsPgZK7jLwR6TaJU3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:556938448386:android:2016834d1690a79b70e11b",
+        "android_client_info": {
+          "package_name": "com.example.tgh_rpg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3wtS0SsIWr_vfkSsPgZK7jLwR6TaJU3I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
